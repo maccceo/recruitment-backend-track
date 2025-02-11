@@ -3,6 +3,9 @@
 ## Submission Process
 Candidates must **fork** the repository and, once they have completed their work, submit the link to their forked repository via email to their recruitment contact.
 
+## Questions and Clarifications
+Any qeustion and clarification must be forwarded opening an issue on this repository.
+
 ## Scoring Criteria
 Each feature and best practice contributes to a total score of **100 points**, allowing candidates to self-evaluate their implementation. The distribution is as follows:
 
