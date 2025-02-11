@@ -95,8 +95,8 @@ This is a Dockerized PHP-based Invoice Management API project. It provides endpo
 
 1. Clone the repository:
    ```
-   git clone <repository_url>
-   cd <repository_folder>
+   git clone [<repository_url>](https://github.com/Multidialogo/recruitment-backend-track)
+   cd recruitment-backend-track
    ```
 
 2. Build and start the Docker containers:
@@ -104,13 +104,9 @@ This is a Dockerized PHP-based Invoice Management API project. It provides endpo
    docker-compose up --build
    ```
 
-3. Run migrations:
+3. Run migrations (e.g. with Laravel it would be something like):
    ```
    docker-compose exec php php artisan migrate
    ```
 
 4. Use the Postman collection to test the APIs.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
