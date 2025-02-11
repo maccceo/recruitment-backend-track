@@ -1,3 +1,50 @@
+# Instructions for Candidates
+
+## Submission Process
+Candidates must **fork** the repository and, once they have completed their work, submit the link to their forked repository via email to their recruitment contact.
+
+## Scoring Criteria
+Each feature and best practice contributes to a total score of **100 points**, allowing candidates to self-evaluate their implementation. The distribution is as follows:
+
+- **Docker Environment (15 points)**
+  - Proper multistage Dockerfile (5)
+  - Well-structured docker-compose setup (5)
+  - Persistent database volume configuration (5)
+
+- **Project Structure & MVC (10 points)**
+  - Use of a PHP MVC framework (5)
+  - Well-organized folder structure (5)
+
+- **Database & ORM (10 points)**
+  - Correct use of migrations (5)
+  - Proper ORM integration (5)
+
+- **RESTful API (20 points)**
+  - Complete CRUD endpoints for Users, Tax Profiles, Invoices (10)
+  - Proper JSON responses & HTTP status codes (5)
+  - Implemented pagination & filters (5)
+
+- **Testing (15 points)**
+  - Unit & integration tests (10)
+  - Use of test fixtures (5)
+
+- **Documentation (10 points)**
+  - Well-written README with setup & usage instructions (5)
+  - Detailed Postman collection with API testing examples (5)
+  - An **OpenAPI document** describing the API is appreciated; if generated automatically from entities, it is even better (5)
+
+- **Git & Version Control (5 points)**
+  - Meaningful commit messages & clear history (5)
+
+- **Security (10 points)**
+  - Secure password handling (5)
+  - API authentication (JWT, API keys, etc.) (5)
+
+- **Other Best Practices (5 points)**
+  - Logging & error handling (3)
+  - Proper database relationship handling (2)
+
+---
 
 # Invoice Management API
 
@@ -95,7 +142,7 @@ This is a Dockerized PHP-based Invoice Management API project. It provides endpo
 
 1. Clone the repository:
    ```
-   git clone https://github.com/Multidialogo/recruitment-backend-track
+   git clone https://github.com/<Your-github-username>/recruitment-backend-track
    cd recruitment-backend-track
    ```
 
@@ -104,9 +151,10 @@ This is a Dockerized PHP-based Invoice Management API project. It provides endpo
    docker-compose up --build
    ```
 
-3. Run migrations (e.g. with Laravel it would be something like):
+3. Run migrations (e.g., with Laravel it would be something like):
    ```
    docker-compose exec php php artisan migrate
    ```
 
 4. Use the Postman collection to test the APIs.
+
