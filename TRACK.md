@@ -95,7 +95,7 @@ This is a Dockerized PHP-based Invoice Management API project. It provides endpo
 
 1. Clone the repository:
    ```
-   git clone [<repository_url>](https://github.com/Multidialogo/recruitment-backend-track)
+   git clone https://github.com/Multidialogo/recruitment-backend-track
    cd recruitment-backend-track
    ```
 
