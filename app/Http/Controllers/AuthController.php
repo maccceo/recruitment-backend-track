@@ -3,23 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\AuthLoginRequest;
-use App\Http\Requests\Auth\AuthRegisterRequest;
+use App\Http\Requests\User\StoreUserRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Services\UserService;
 
 class AuthController extends Controller
 {
-    public function register(AuthRegisterRequest $request)
+    protected $userService;
+
+    public function __construct(UserService $userService)
     {
-        $user = User::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => bcrypt($request['password'])
-        ]);
+        $this->userService = $userService;
+    }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
-
+    public function register(StoreUserRequest $request)
+    {
+        $user = $this->userService->createUser($request->validated());
+        $token = $this->userService->generateToken($user);
         return response()->json([
             'user' => $user,
             'access_token' => $token,
@@ -29,30 +30,24 @@ class AuthController extends Controller
 
     public function login(AuthLoginRequest $request)
     {
-        $credentials = [
-            'email' => $request['email'],
-            'password' => $request['password'],
-        ];
-        if (!Auth::attempt($credentials)) {
+        if (!$this->userService->isValidUser($request['email'], $request['password'])) {
             return response()->json([
                 'message' => 'Invalid credentials'
             ], 401);
         }
 
         $user = User::where('email', $request['email'])->first();
-        $token = $user->createToken('auth_token')->plainTextToken;
-
+        $token = $this->userService->generateToken($user);
         return response()->json([
+            'user' => $user,
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'user' => $user
         ]);
     }
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
-
+        $this->userService->destroyToken($request);
         return response()->json([
             'message' => 'Logout successful'
         ]);
