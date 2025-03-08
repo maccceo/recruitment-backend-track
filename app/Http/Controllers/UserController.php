@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\StoreUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -23,8 +24,8 @@ class UserController extends Controller
      */
     public function index(): JsonResponse
     {
-        $users = User::orderBy('created_at', 'desc')->paginate(20);
-        return response()->json($users);
+        $users = User::orderBy('created_at', 'desc')->paginate();
+        return UserResource::collection($users)->response();
     }
 
     /**
@@ -34,7 +35,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validated();
         $user = $this->userService->createUser($validatedData);
-        return response()->json($user, 201);
+        return response()->json(new UserResource($user), 201);
     }
 
     /**
@@ -44,7 +45,7 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail($id);
-            return response()->json($user);
+            return response()->json(new UserResource($user));
         } catch (ModelNotFoundException $e) {
             return response()->json([
                 'message' => 'User not found',
@@ -61,7 +62,7 @@ class UserController extends Controller
             $validatedData = $request->validated();
             $user = $this->userService->updateUser(User::findOrFail($id), $validatedData);
             return response()->json([
-                'data' => $user,
+                'data' => new UserResource($user),
                 'message' => 'User edited successfully'
             ]);
         } catch (ModelNotFoundException $e) {
@@ -69,12 +70,6 @@ class UserController extends Controller
                 'message' => 'User not found',
             ], 404);
         }
-
-        $user = $this->userService->updateUser($user, $validatedData);
-        return response()->json([
-            'data' => $user,
-            'message' => 'User edited successfully'
-        ]);
     }
 
     /**
