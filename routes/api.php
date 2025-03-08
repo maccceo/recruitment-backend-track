@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TaxProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('users', [UserController::class, 'store']);
     Route::put('users/{user}', [UserController::class, 'update']);
     Route::delete('users/{user}', [UserController::class, 'destroy']);
+
+    // tax profiles
+    Route::get('tax_profiles', [TaxProfileController::class, 'index']);
+    Route::get('tax_profiles/{tax_profile}', [TaxProfileController::class, 'show']);
+    Route::post('tax_profiles', [TaxProfileController::class, 'store']);
+    Route::put('tax_profiles/{tax_profile}', [TaxProfileController::class, 'update']);
+    Route::delete('tax_profiles/{tax_profile}', [TaxProfileController::class, 'destroy']);
 });
