@@ -21,7 +21,9 @@ return new class extends Migration
             $table->date('issue_date')->useCurrent();
             $table->date('due_date');
             $table->decimal('total_amount', 10, 2);
-            $table->enum('status', array_column(InvoiceStatusType::cases(), 'value'))->default(InvoiceStatusType::DRAFT->value);
+            $table->enum('status', array_column(InvoiceStatusType::cases(), 'value'))
+                ->nullable()
+                ->default(InvoiceStatusType::DRAFT->value);
             $table->timestamps();
         });
     }
