@@ -18,6 +18,9 @@ class AuthController extends BaseController
         $this->userService = $userService;
     }
 
+    /**
+     * Creates a new user account and returns an access token.
+     */
     public function register(StoreUserRequest $request)
     {
         $user = $this->userService->createUser($request->validated());
@@ -29,6 +32,9 @@ class AuthController extends BaseController
         ], 201);
     }
 
+    /**
+     * Logs in a user by validating their credentials and returning an access token.
+     */
     public function login(AuthLoginRequest $request)
     {
         if (!$this->userService->isValidUser($request['email'], $request['password'])) {
@@ -46,6 +52,9 @@ class AuthController extends BaseController
         ]);
     }
 
+    /**
+     * Logs out the authenticated user by invalidating their access token.
+     */
     public function logout(Request $request)
     {
         $this->userService->destroyToken($request);

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class InvoiceController extends BaseController
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the invoice.
      */
     public function index(Request $request): JsonResponse
     {
@@ -25,7 +25,7 @@ class InvoiceController extends BaseController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created invoice in storage.
      */
     public function store(StoreInvoiceRequest $request): JsonResponse
     {
@@ -34,7 +34,7 @@ class InvoiceController extends BaseController
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified invoice.
      */
     public function show($id): JsonResponse
     {
@@ -49,7 +49,7 @@ class InvoiceController extends BaseController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified invoice in storage.
      */
     public function update(UpdateInvoiceRequest $request, $id): JsonResponse
     {
@@ -69,7 +69,7 @@ class InvoiceController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified invoice from storage.
      */
     public function destroy($id): JsonResponse
     {

@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class TaxProfileController extends BaseController
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the tax profile.
      */
     public function index(Request $request): JsonResponse
     {
@@ -25,7 +25,7 @@ class TaxProfileController extends BaseController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created tax profile in storage.
      */
     public function store(StoreTaxProfileRequest $request): JsonResponse
     {
@@ -34,7 +34,7 @@ class TaxProfileController extends BaseController
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified tax profile.
      */
     public function show($id): JsonResponse
     {
@@ -49,7 +49,7 @@ class TaxProfileController extends BaseController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified tax profile in storage.
      */
     public function update(UpdateTaxProfileRequest $request, $id): JsonResponse
     {
@@ -69,7 +69,7 @@ class TaxProfileController extends BaseController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified tax profile from storage.
      */
     public function destroy($id): JsonResponse
     {
