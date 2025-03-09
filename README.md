@@ -4,14 +4,14 @@ RB Taxes is a Laravel-based backend API that provides a complete system for mana
 
 ## Key features
 
-**User Management**: Registration, authentication, and permission management
-**Tax Profiles**: Creation and management of tax profiles for companies and individuals
-**Invoice Management**: Creation, modification, and archiving of electronic invoices
-**Advanced Search**: Filter invoices by their fields
+- **User Management**: Registration, authentication, and permission management
+- **Tax Profiles**: Creation and management of tax profiles for companies and individuals
+- **Invoice Management**: Creation, modification, and archiving of electronic invoices
+- **Advanced Search**: Filter invoices by their fields
 
 ## Getting Started
 
-1. Clone the repository:
+1. Clone this repository:
 
     ```
     git clone https://github.com/maccceo/recruitment-backend-track
@@ -40,7 +40,11 @@ RB Taxes is a Laravel-based backend API that provides a complete system for mana
 
     ```bash
     composer install
+    
+    # generates the application key and stores it in your .env file
     php artisan key:generate
+    
+    # run migration and seeders to initialize the database and populate the tables with dummy data 
     php artisan migrate --seed
     ```
 
@@ -51,4 +55,4 @@ RB Taxes is a Laravel-based backend API that provides a complete system for mana
 To test and interact with the RB Taxes API, the following options are available:
 
 -   [Postman collection](https://www.postman.com/maccceo/workspace/public/collection/5171181-72d8304c-90b0-496e-8ff7-4a35a0c8463d?action=share&creator=5171181)
--   After the installation, check the docs: http://localhost:8080/docs/api/
+-   after the installation, check the docs: http://localhost:8080/docs/api/
