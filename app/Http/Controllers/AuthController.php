@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Auth\AuthLoginRequest;
 use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\UserService;
 
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     protected $userService;
 
@@ -22,7 +23,7 @@ class AuthController extends Controller
         $user = $this->userService->createUser($request->validated());
         $token = $this->userService->generateToken($user);
         return response()->json([
-            'user' => $user,
+            'user' => new UserResource($user),
             'access_token' => $token,
             'token_type' => 'Bearer'
         ], 201);
@@ -39,7 +40,7 @@ class AuthController extends Controller
         $user = User::where('email', $request['email'])->first();
         $token = $this->userService->generateToken($user);
         return response()->json([
-            'user' => $user,
+            'user' => new UserResource($user),
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);

@@ -8,15 +8,19 @@ use App\Http\Resources\TaxProfileResource;
 use App\Models\TaxProfile;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
-class TaxProfileController extends Controller
+class TaxProfileController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $taxProfiles = TaxProfile::orderBy('created_at', 'desc')->paginate();
+        $query = TaxProfile::query();
+        $query = $this->applyFilters($query, $request->query());
+
+        $taxProfiles = $query->orderBy('created_at', 'desc')->paginate();
         return TaxProfileResource::collection($taxProfiles)->response();
     }
 

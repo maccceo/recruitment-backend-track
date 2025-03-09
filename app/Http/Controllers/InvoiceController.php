@@ -8,15 +8,19 @@ use App\Http\Resources\InvoiceResource;
 use App\Models\Invoice;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
-class InvoiceController extends Controller
+class InvoiceController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $invoices = Invoice::orderBy('created_at', 'desc')->paginate();
+        $query = Invoice::query();
+        $query = $this->applyFilters($query, $request->query());
+
+        $invoices = $query->orderBy('created_at', 'desc')->paginate();
         return InvoiceResource::collection($invoices)->response();
     }
 

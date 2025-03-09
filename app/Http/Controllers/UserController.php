@@ -9,8 +9,9 @@ use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController extends BaseController
 {
     protected $userService;
 
@@ -22,9 +23,12 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $users = User::orderBy('created_at', 'desc')->paginate();
+        $query = User::query();
+        $query = $this->applyFilters($query, $request->query());
+
+        $users = $query->orderBy('created_at', 'desc')->paginate();
         return UserResource::collection($users)->response();
     }
 
@@ -33,8 +37,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): JsonResponse
     {
-        $validatedData = $request->validated();
-        $user = $this->userService->createUser($validatedData);
+        $user = $this->userService->createUser($request->validated());
         return response()->json(new UserResource($user), 201);
     }
 

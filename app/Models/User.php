@@ -35,6 +35,7 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected array $filterable = ['id', 'name', 'email', 'created_at', 'updated_at'];
     /**
      * Get the attributes that should be cast.
      *
@@ -51,5 +52,10 @@ class User extends Authenticatable
     public function taxProfile(): HasOne
     {
         return $this->hasOne(TaxProfile::class);
+    }
+
+    public function getFilterable(): array
+    {
+        return $this->filterable;
     }
 }

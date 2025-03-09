@@ -24,8 +24,25 @@ class Invoice extends Model
         'status' => InvoiceStatusType::class
     ];
 
+    protected array $filterable = [
+        'id',
+        'tax_profile_id',
+        'invoice_number',
+        'issue_date',
+        'due_date',
+        'total_amount',
+        'status',
+        'created_at',
+        'updated_at'
+    ];
+
     public function taxProfile(): BelongsTo
     {
         return $this->belongsTo(TaxProfile::class);
+    }
+
+    public function getFilterable(): array
+    {
+        return $this->filterable;
     }
 }
