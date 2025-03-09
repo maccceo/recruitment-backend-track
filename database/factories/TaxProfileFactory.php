@@ -20,8 +20,8 @@ class TaxProfileFactory extends Factory
     {
         return [
             "user_id" => User::factory(),
-            "tax_code" => $this->faker->unique()->word(),
-            "vat_number" => $this->faker->word(),
+            "tax_code" => $this->faker->bothify('?????-#####'),
+            "vat_number" => $this->faker->randomNumber(8, true),
             "legal_entity_type" => $this->faker->randomElement(array_column(LegalEntityType::cases(), 'value')),
         ];
     }

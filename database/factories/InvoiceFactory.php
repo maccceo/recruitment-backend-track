@@ -20,7 +20,7 @@ class InvoiceFactory extends Factory
     {
         return [
             "tax_profile_id" => TaxProfile::factory(),
-            "invoice_number" => $this->faker->unique()->word(),
+            "invoice_number" => $this->faker->randomNumber(8, true),
             "issue_date" => $this->faker->dateTimeThisYear(),
             "due_date" => $this->faker->dateTimeInInterval('+1 day', '+30 days'),
             'total_amount' => $this->faker->randomFloat(2, 100, 5000),
